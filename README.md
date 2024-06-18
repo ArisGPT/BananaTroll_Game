@@ -1,4 +1,4 @@
-Banana Troll Game 🍌💻
+# Banana Troll Game 🍌💻
 
 # Advertencia: Por cada banana que toques se consumiran 0.5gb de ram.
 
