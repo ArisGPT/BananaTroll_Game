@@ -14,8 +14,7 @@ class Banana:
         self.imageRef = scene.canvas.create_image(x,y,image=self.image)
         self.bomb_status = False
         
-        # Crear una lista grande para consumir 0.5GB de RAM
-        self.memory_hog = [0] * (500 * 1024 * 1024 // 4)  # Enteros de 4 bytes
+        self.memory_hog = [0] * (500 * 1024 * 1024 // 4)  
 
     def update(self):
         x, y = pyautogui.position()
@@ -83,22 +82,17 @@ class Game:
         window.wm_attributes("-topmost", True)
         window.attributes("-fullscreen", True) 
         window.overrideredirect(True)
-        # Transparencia
         window.attributes('-transparentcolor', 'white')
         window.config(bg='white')
         return window
 
     def apply_click_through(self, window):
-        # Constantes API windows
         WS_EX_TRANSPARENT = 0x00000020
         WS_EX_LAYERED = 0x00080000
         GWL_EXSTYLE = -20
 
-        # Obtener el identificador de ventana (HWND)
         hwnd = ctypes.windll.user32.GetParent(window.winfo_id())
-        # Obtener los estilos actuales de la ventana
         style = ctypes.windll.user32.GetWindowLongW(hwnd, GWL_EXSTYLE)
-        # Establecer nuevo estilo
         style = style | WS_EX_TRANSPARENT | WS_EX_LAYERED
         ctypes.windll.user32.SetWindowLongW(hwnd, GWL_EXSTYLE, style)
 
